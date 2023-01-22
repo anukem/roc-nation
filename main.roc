@@ -3,7 +3,6 @@ app "hello"
     imports [pf.Stdout]
     provides [main] to pf
 
-
 slice = \s, start, end ->
   if (start < 0) || (end > Str.countGraphemes s)
   then {step: 0, result: [""], leftover: [""]}
