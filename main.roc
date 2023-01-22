@@ -13,10 +13,15 @@ slice = \s, start, end ->
       then {step: state.step + 1, result: List.append state.result elem, leftover: state.leftover}
       else {step: state.step + 1, result: state.result, leftover: List.append state.leftover elem}
 
-pluralize = \s -> if s > 1 then Bool.true else Bool.false
+getResult = \s -> s.result |> Str.joinWith ""
 
-something = "dogs"
+pluralize = \s ->
+    if (getResult (slice s (Str.countGraphemes s - 1) (Str.countGraphemes s))) == "s"
+    then s
+    else "\(s)s"
+
+something = "dog"
 
 main =
-     slice "dogs" 1 (Str.countGraphemes something) |> .result |> Str.joinWith "" |> Stdout.line
+     something |> pluralize |> Stdout.line
 
