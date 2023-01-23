@@ -24,3 +24,11 @@ something = "dog"
 main =
      something |> pluralize |> Stdout.line
 
+
+applyOp = \op, state ->
+  when state is
+    Invalid -> Invalid
+    State initial position ->
+      when op is
+        Insert s ->
+          {beginning, middle}
